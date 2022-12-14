@@ -86,14 +86,14 @@ class TitleFormat:
             else:pass
         return filled_list
 
-set_values = {}
+# set_values = {}
 
-for item in Titles.all_titles:
-    set_values[item]=""
+# for item in Titles.all_titles:
+#     set_values[item]=""
 
-# print(set_values)
+# # print(set_values)
 
-import json
+# import json
 
-with open("default.json", "w") as file:
-    json.dump(set_values, file)
+# with open("default.json", "w") as file:
+#     json.dump(set_values, file)
