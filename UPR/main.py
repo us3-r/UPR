@@ -17,9 +17,9 @@ empty = ";"
 obj   = {}
 final = []
 
-input__  = "test_book.xlsx"#input(f"{c.Prompt.File_req}")
-output__ = "test.csv"#input(f"{c.Prompt.Output_file}")
-rows__   = 7 #input(f"{c.Prompt.Rows}")
+input__  = input(f"{c.Prompt.File_req}")
+output__ = input(f"{c.Prompt.Output_file}")
+rows__   = input(f"{c.Prompt.Rows}")
 
 data = p.read_excel(input__)
 
