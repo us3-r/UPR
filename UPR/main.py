@@ -1,4 +1,5 @@
 import pandas as p
+import json
 
 import classes as c
 import titles  as t
@@ -13,7 +14,7 @@ import titles  as t
 # append data to their core title
 title = []
 empty = ";"
-obj = {}
+obj   = {}
 
 input__  = input(f"{c.Prompt.File_req}")
 output__ = input(f"{c.Prompt.Output_file}")
