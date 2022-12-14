@@ -1,8 +1,8 @@
 import pandas as p
 import json
 
-import classes as c
-import titles  as t
+import util.classes as c
+import util.titles  as t
 
 
 
