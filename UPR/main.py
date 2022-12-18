@@ -59,13 +59,6 @@ for r in range(int(rows__)):
     with open(output__,"a") as out_file:
         out_file.write(str(title))
         out_file.write(f"\n{t.TitleFormat.low_title}")
-        # final_string =""
-        # for value in default_data.values():
-        #     if value == ";":
-        #         final_string = final_string+ '\"\"' + ";"
-        #     else: final_string = final_string+f"\"{str(value)}\"" + ";"
-        # out_file.write(f"\n{str(final_string)}\n")
-        # out_file.write("\n")
         data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
         out_file.write(f"\n{data_row}\n")
 
