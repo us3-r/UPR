@@ -3,7 +3,7 @@
 ## BEFORE FIRST USE
 
 Before you first run the program you need to remove a few things:
- in **default.json** remove the first tree line ("sim":"", "tag":"","name":"") 
+<br>- in **default.json** remove the first tree line ("sim":"", "tag":"","name":"") 
 
 
 ### TODO
