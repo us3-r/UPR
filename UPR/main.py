@@ -17,12 +17,10 @@ title = []
 empty = ";"
 obj   = {}
 final = []
-# input__  = input(f"{c.Prompt.File_req}")
-# output__ = input(f"{c.Prompt.Output_file}")
-# rows__   = input(f"{c.Prompt.Rows}")
-input__ = "example/test_book.xlsx"
-output__ = "example/out.txt"
-rows__ = "7"
+input__  = input(f"{c.Prompt.File_req}")
+output__ = input(f"{c.Prompt.Output_file}")
+rows__   = input(f"{c.Prompt.Rows}")
+
 
 
 data = p.read_excel(input__)
