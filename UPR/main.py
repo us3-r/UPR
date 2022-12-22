@@ -20,7 +20,7 @@ final = []
 input__  = input(f"{c.Prompt.File_req}")
 output__ = input(f"{c.Prompt.Output_file}")
 rows__   = input(f"{c.Prompt.Rows}")
-
+BT = ""
 
 
 data = p.read_excel(input__)
@@ -37,6 +37,10 @@ with open("default.json","r") as file:
 for r in range(int(rows__)):
     d = data.loc[r].values
     print(f"[row{r}] ================================")     # returns a list of all the values from that row
+    if BT == "": 
+        BT = str(d[0])
+    line_breake = True if BT==str(d[0]) else False
+        
     for col in range(len(title)):
         try:
             # print(title[col])
@@ -57,8 +61,9 @@ for r in range(int(rows__)):
                     default_data.update(update_data)
                 else: pass
     with open(output__,"a") as out_file:
-        out_file.write(str(title))
-        out_file.write(f"\n{t.TitleFormat.low_title}")
+        if not line_break:
+            out_file.write(str(title))
+            out_file.write(f"\n{t.TitleFormat.low_title}")
         data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
         out_file.write(f"\n{data_row}\n")
 
