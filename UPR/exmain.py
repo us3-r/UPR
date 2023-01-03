@@ -17,9 +17,9 @@ title = []
 empty = ";"
 obj   = {}
 final = []
-input__  = "example//test_book.xlsx" #input(f"{c.Prompt.File_req}")
-output__ = "output.txt"              #input(f"{c.Prompt.Output_file}")
-rows__   = 7                         #input(f"{c.Prompt.Rows}")
+input__  = input(f"{c.Prompt.File_req}")
+output__ = input(f"{c.Prompt.Output_file}")
+rows__   = input(f"{c.Prompt.Rows}")
 
 
 
@@ -30,38 +30,25 @@ for title_ in data:
 title = t.TitleFormat.missingTitle(title) # gets all titles added to one list
 
 
-# with open("default.json","r") as file:
-#     default_data = json.loads(file.read())
+with open("default.json","r") as file:
+    default_data = json.loads(file.read())
 # print(title)
 
 for r in range(int(rows__)):
-    d = data.loc[r].values # returns a list of all the values from that row
-    print(f"[row{r}] ================================")
-    first = True
-    json_ =""
+    d = data.loc[r].values
+    print(f"[row{r}] ================================")     # returns a list of all the values from that row
     for col in range(len(title)):
         try:
             # print(title[col])
-            if first:
-                print(f"[...] {title[col]}|{str(d[col])}")
-                json_ = t.SelectJson.select(str(d[col]))
-                first = False
-            else:pass
-            with open(f"{json_}","r") as file:
-                default_data = json.loads(file.read())
-            # print(title[col])
             if title[col] in default_data:
-                print(f"[+] {title[col]} | {str(d[col])}")
                 if title[col] != "":
                     update_data = {title[col]: str(d[col])}
                     default_data.update(update_data)
-                    print("in")
                 else:
                     update_data = {title[col]: empty}
                     default_data.update(update_data)
-                    print("out")
             else:
-                print(f"[!] {title[col]} not in {json_}")
+                print(f"[!] {title[col]} not in default.json")
 
         except IndexError as e:
             if title[col] in default_data:
