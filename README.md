@@ -4,7 +4,7 @@
 
 Before you first run the program you need to remove a few things:
 <br>- in **default.json** remove the first tree line ("sim":"", "tag":"","name":"") 
-<br>- uncomment the three lines in main.py (line 20,21,22), and delete their content
+<br>- uncomment the three lines in main.py (line 20,21,22), and delete their content.
 
 
 ### TODO
