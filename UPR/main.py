@@ -10,6 +10,7 @@ from  colorama import Fore as color
 
 #file_path = input(c.Prompt.File_req) # get path to the file to convert
 
+print("Hello world!\nps this program is not very safe for your pcs memory\nGLHF <3\n\n")
 
 
 # append data to their core title
@@ -17,9 +18,9 @@ title = []
 empty = ";"
 obj   = {}
 final = []
-input__  = "example//test_book.xlsx" #input(f"{c.Prompt.File_req}")
-output__ = "output.txt"              #input(f"{c.Prompt.Output_file}")
-rows__   = 7                         #input(f"{c.Prompt.Rows}")
+input__  = input(f"{c.Prompt.File_req}")
+output__ = input(f"{c.Prompt.Output_file}")
+rows__   = input(f"{c.Prompt.Rows}")
 
 
 
