@@ -3,8 +3,8 @@ import json
 
 import util.classes as c
 import util.titles  as t
-
-
+# from util.color import colors as color
+from  colorama import Fore as color
 
 # ------ code start ------ #
 
@@ -34,34 +34,36 @@ title = t.TitleFormat.missingTitle(title) # gets all titles added to one list
 #     default_data = json.loads(file.read())
 # print(title)
 
+current_block_type = ""
+previous_block_type = ""
+same = 0
+
 for r in range(int(rows__)):
     d = data.loc[r].values # returns a list of all the values from that row
-    print(f"[row{r}] ================================")
+    print(f"\n================= [row{r}] ======================")
     first = True
     json_ =""
+    if first:
+        print(f"[...] CURRENT  {title[0]} >> {str(d[0])}")
+        json_ = t.SelectJson.select(str(d[0]))
+        current_block_type = str(d[0])
+    else:False
+    with open(f"{json_}","r") as file:
+        default_data = json.loads(file.read())
+    print(f"[...] USING {json_}\n")
     for col in range(len(title)):
         try:
-            # print(title[col])
-            if first:
-                print(f"[...] {title[col]}|{str(d[col])}")
-                json_ = t.SelectJson.select(str(d[col]))
-                first = False
-            else:pass
-            with open(f"{json_}","r") as file:
-                default_data = json.loads(file.read())
             # print(title[col])
             if title[col] in default_data:
                 print(f"[+] {title[col]} | {str(d[col])}")
                 if title[col] != "":
                     update_data = {title[col]: str(d[col])}
                     default_data.update(update_data)
-                    print("in")
                 else:
                     update_data = {title[col]: empty}
                     default_data.update(update_data)
-                    print("out")
             else:
-                print(f"[!] {title[col]} not in {json_}")
+                print(f"|__[!] {title[col]} not in {json_} (skipped)")
 
         except IndexError as e:
             if title[col] in default_data:
@@ -69,17 +71,26 @@ for r in range(int(rows__)):
                     update_data = {title[col]: empty}
                     default_data.update(update_data)
                 else: pass
+    if current_block_type != previous_block_type:
+        same = 0
+        previous_block_type = current_block_type
+    else: pass
     with open(output__,"a") as out_file:
-        out_file.write(str(title))
-        out_file.write(f"\n{t.TitleFormat.low_title}")
-        data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
-        out_file.write(f"\n{data_row}\n")
-
+        print(f"\n[?] WRITING UNDER BLOCK TYPE: {current_block_type} ")
+        if  previous_block_type == current_block_type and same < 1:
+            out_file.write(str(list(default_data.keys())))
+            out_file.write(f"\n{t.TitleFormat.low_title}")
+            data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
+            out_file.write(f"\n{data_row}\n")
+            same += 1
+        elif previous_block_type == current_block_type:
+            data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
+            out_file.write(f"\n{data_row}\n")
+            same += 1
+        else:
             # Write a blank line after the data row
-        out_file.write("\n")
-
-
-# panda_dataframe = p.DataFrame(obj)    # creates a Panda data frame
-# panda_dataframe.to_csv(output__)    # writes Pandas data frame as a cvs
-# print("Created csv\n", panda_dataframe) # prints created csv
+            out_file.write("\n")
+    print(f"[?] SUCCESSFULLY WRITTEN ROW {r} TO {output__}")
+print(f"\n+++++++++++++++++++++++++++++++++++++++++++++++")
+print(f"+++++++++++++++++ DONE ++++++++++++++++++++++++")
 
