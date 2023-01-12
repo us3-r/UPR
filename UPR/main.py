@@ -3,14 +3,13 @@ import json
 
 import util.classes as c
 import util.titles  as t
-# from util.color import colors as color
-from  colorama import Fore as color
+import util.t       as ui
+
 
 # ------ code start ------ #
 
-#file_path = input(c.Prompt.File_req) # get path to the file to convert
 
-print("Hello world!\nps this program is not very safe for your pcs memory\nGLHF <3\n\n")
+# print("Hello world!\nps this program is not very safe for your pcs memory\nGLHF <3\n\n") :D
 
 
 # append data to their core title
@@ -18,22 +17,20 @@ title = []
 empty = ";"
 obj   = {}
 final = []
-input__  = input(f"{c.Prompt.File_req}")
-output__ = input(f"{c.Prompt.Output_file}")
-rows__   = input(f"{c.Prompt.Rows}")
 
 
+ui.ui_main() # opens a ui to select files
+with open("config.json","r") as file:
+    data = json.loads(file.read())
+input__ = data["input_file"]
+output__ = data["output_file"]
+rows__ = data["rows"]
 
 data = p.read_excel(input__)
 
 for title_ in data:
     title.append(title_)                                # appends all titles in an excel document to a list
 title = t.TitleFormat.missingTitle(title) # gets all titles added to one list
-
-
-# with open("default.json","r") as file:
-#     default_data = json.loads(file.read())
-# print(title)
 
 current_block_type = ""
 previous_block_type = ""
