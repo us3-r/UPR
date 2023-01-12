@@ -13,3 +13,4 @@ Before you first run the program you need to remove a few things:
 - ~~the above thing should be working now...but the values are not getting written to the file~~ DONE
 - ~~add text bellow the list of titles [ dont know what it is ]~~  DONE
 - ~~fix the position of values [ eg: values in table get infront of the valus in .json >> can lead to conversion errors ]~~ DONE
+- add updated values for "lower_title" based on BLOCK_TYPE
