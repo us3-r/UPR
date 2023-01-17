@@ -1,0 +1,12 @@
+del
+rmdir
+format
+net
+shutdown
+taskkill
+netstat
+ipconfig
+reg
+xcopy
+ping
+copy

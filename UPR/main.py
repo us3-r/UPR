@@ -1,9 +1,10 @@
 import pandas as p
 import json
 
+
 import util.classes as c
 import util.titles  as t
-import util.t       as ui
+import util.ui      as ui
 
 
 # ------ code start ------ #
@@ -20,6 +21,19 @@ final = []
 
 
 ui.ui_main() # opens a ui to select files
+
+# option to update /json dir and any .json files
+# not finished yet
+# if ui.update:
+#     update_req = []
+#     c.UpdateReq.PrintTree()
+#     file_for_update = input("Which file would you like to update? ")
+#     update_req.append(file_for_update)
+
+#     # exit()
+
+
+
 with open("config.json","r") as file:
     data = json.loads(file.read())
 input__ = data["input_file"]

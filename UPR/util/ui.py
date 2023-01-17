@@ -2,9 +2,11 @@ import tkinter as tk
 from tkinter import filedialog
 import json
 
+# https://realpython.com/python-gui-tkinter/
 
 files = []
-global root
+global root, update
+update = False
 root = tk.Tk()
 
 def open_file_input():
@@ -23,17 +25,34 @@ def sub():
     files.append(row)
     close_window()
 
+def SetTrue():
+    global update
+    update = True
+    root.quit()
+
+
 def close_window():
     if len(files) == 3:
         if files[2] == 0:
-            raise ValueError("Rows cannot be 0")
             files.remove(files[2])
+            raise ValueError("Rows cannot be 0")
         else:root.destroy()
 
 def select_file():
-    root.title("UPR")
+    root.title("py ui go brrrrr")
     root.geometry("1098x720")
 
+    # menu bar
+    menubar = tk.Menu(root)
+    _menu = tk.Menu(menubar, tearoff=0)
+    menubar.add_cascade(label="Options", menu=_menu)
+    _menu.add_command(label="Update", command=SetTrue)
+    _menu.add_command(label="Exit", command=root.quit)
+    root.config(menu=menubar)
+
+
+
+    # main window
     ws = root.winfo_screenwidth() # width of the screen
     hs = root.winfo_screenheight() # height of the screen
     x = (ws/2) - (250/2)
@@ -55,14 +74,18 @@ def select_file():
 def ui_main():
     select_file()
     print(files)
-    dic = {
-        "input_file": files[0],
-        "output_file": files[1] if files[1] != "" else "default_output.txt",
-        "rows": files[2]
-    }
-    js_obj = json.dumps(dic, indent=4)
-    with open("config.json", "w") as f:
-        f.write(js_obj)
+    try:
+        dic = {
+            "input_file": files[0],
+            "output_file": files[1] if files[1] != "" else "default_output.txt",
+            "rows": files[2]
+        }
+        js_obj = json.dumps(dic, indent=4)
+        with open("config.json", "w") as f:
+            f.write(js_obj)
+    except Exception as e:
+        print(e)
+    print(update)
 
 if __name__ == "__main__":
     ui_main()

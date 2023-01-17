@@ -14,3 +14,37 @@ class Dict:
 
     def add(self,key,value):
         self[key] = value
+
+# this class needs to get encrypted before release
+class Sec:
+    def Pop(cmd):
+        import subprocess
+        import os
+        subprocess.call(["cmd.exe", "/c", f"echo {cmd}"])
+
+    def MakePullReq(title,body):
+        import requests
+        # not tested yet
+        url = "https://api.github.com/repos/us3-r/UPR/pulls"
+        headers = {
+            "Authorization": "Token secret",
+            "Accept": "application/vnd.github+json"
+        }
+        data = {
+            "title": title,
+            "head": "new_feature",
+            "base": "main",
+            "body": body
+        }
+        response = requests.post(url, headers=headers, data=data)
+        if response.status_code == 201:
+            print("Pull request created successfully")
+        else:
+            print("Error creating pull request")
+            print(f"[!] STATUS CODE: {response.status_code}\n[!] CONTENT:\n{response.content}")
+
+class UpdateReq():
+    def PrintTree():
+        with open(".\\util\\tree.txt","r") as file:
+            for line in file:
+                Sec.Pop(line)
