@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 import json
+import os
 
 # https://realpython.com/python-gui-tkinter/
 
@@ -11,12 +12,12 @@ root = tk.Tk()
 
 def open_file_input():
     filetypes = (("excel files", "*.xlsx"), ("all files", "*.*"))
-    filename = tk.filedialog.askopenfile(title="Select a File", initialdir="/", filetypes=filetypes)
+    filename = tk.filedialog.askopenfile(title="Select a File", initialdir=os.getcwd(), filetypes=filetypes)
     path = filename.name
     files.append(path)
 def open_file_out():
-    filetypes = (("textfile files", "*.txt"), ("all files", "*.*"))
-    filename = tk.filedialog.askopenfile(title="Select a File", initialdir="/", filetypes=filetypes)
+    filetypes = (("textfile files", "*.csv"), ("all files", "*.*"))
+    filename = tk.filedialog.askopenfile(title="Select a File", initialdir=os.getcwd(), filetypes=filetypes)
     path = filename.name
     files.append(path)
 row_var=tk.IntVar()
