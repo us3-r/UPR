@@ -40,7 +40,7 @@ def close_window():
         else:root.destroy()
 
 def select_file():
-    root.title("py ui go brrrrr")
+    root.title("xlsx to csv for iFix")
     root.geometry("1098x720")
 
     # menu bar
@@ -51,7 +51,10 @@ def select_file():
     _menu.add_command(label="Exit", command=root.quit)
     root.config(menu=menubar)
 
-
+    # text
+    label = tk.Label(root, text="https://github.com/us3-r/UPR")
+    label.config(font=("Courier", 12))
+    label.pack()
 
     # main window
     ws = root.winfo_screenwidth() # width of the screen
@@ -61,7 +64,7 @@ def select_file():
     root.geometry('%dx%d+%d+%d' % (450 , 250, x, y))
 
     button_input = tk.Button(root, text="Select input file", command=open_file_input)
-    button_input.place(relx=0.5, rely=0.15, anchor="center")
+    button_input.place(relx=0.5, rely=0.20, anchor="center")
     button_output = tk.Button(root, text="select output file", command=open_file_out)
     button_output.place(relx=0.5, rely=0.40, anchor="center")
     row_labe = tk.Label(root, text="Rows")
