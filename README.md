@@ -11,4 +11,4 @@ you will have 2 buttons (on which it says what they are for) and a field with a 
 <br></ check how the I/O address is typed for DI, DO and AI, AO (byt:bit / byt)
 <br></ for any other problem pleas do make an issue
 <br></ make shore that in your .xlsx document the TYPES are in order (eg: AI,AI,DI,DO... and not AI,DI,AI,DO,AO,DO...)
-! only thing (at the moment) is that if you mess up the file selection you need to restart the program ! 
+<br><br>! only thing (at the moment) is that if you mess up the file selection you need to restart the program ! 
