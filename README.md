@@ -1,16 +1,9 @@
 (☞ﾟヮﾟ)☞ 
 
-## BEFORE FIRST USE
+###WHAT IS THIS?
+This is a tool for converting a .xlsx file to .csv file which can be imported as a database into iFix program
 
-Before you first run the program you need to remove a few things:
-<br>- in **default.json** remove the first tree line ("sim":"", "tag":"","name":"") 
-<br>- uncomment the three lines in main.py (line 20,21,22), and delete their content.
-
-
-### TODO
-- ~~make so all values with the same BLOCK_TYPE are written under same line~~ DONE
-- ~~use different json object based on the BLOCK_TYPE [ eg: if BLOCK_TYPE is "AI" then use "AI:{}" ]~~ DONE
-- ~~the above thing should be working now...but the values are not getting written to the file~~ DONE
-- ~~add text bellow the list of titles [ dont know what it is ]~~  DONE
-- ~~fix the position of values [ eg: values in table get infront of the valus in .json >> can lead to conversion errors ]~~ DONE
-- add updated values for "lower_title" based on BLOCK_TYPE
+####POSSIBLE ERRORS:
+<br>pleas make shore that the colom names in your .xlsx file are the same as they are in iFix program (you can look through the specific types' json file to make shore they are the same)
+<br>check how the I/O addres is typed for DI,DO and AI,AO (byt:bit / byt)
+<br>for any other problem pleas do make an issue
