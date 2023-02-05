@@ -2,15 +2,12 @@ import pandas as p
 import json
 
 
-import util.classes as c
+#! import util.classes as c
 import util.titles  as t
 import util.ui      as ui
 
 
 # ------ code start ------ #
-
-
-# print("Hello world!\nps this program is not very safe for your pcs memory\nGLHF <3\n\n") :D
 
 
 # append data to their core title
@@ -21,20 +18,6 @@ final = []
 
 
 ui.ui_main() # opens a ui to select files
-
-# option to update /json dir and any .json files
-# not finished yet
-# if ui.update:
-#     update_req = []
-#     c.UpdateReq.PrintTree()
-#     file_for_update = input("Which file would you like to update? ")
-#     update_req.append(file_for_update)
-
-    # exit()
-
-
-# clear config.json and write new data
-
 
 
 with open("config.json","r") as file:
@@ -48,7 +31,6 @@ data = p.read_excel(input__)
 
 for title_ in data:
     title.append(title_)                                # appends all titles in an excel document to a list
-title = t.TitleFormat.missingTitle(title) # gets all titles added to one list
 
 current_block_type = ""
 previous_block_type = ""
@@ -58,11 +40,15 @@ with open(output__,"a") as out_file:
     out_file.write(f"{t.TitleFormat.return_top_seq(output__)}\n\n")
 
 for r in range(int(rows__)):
-    d = data.loc[r].values # returns a list of all the values from that row
+
+# makes a list of all the values from that row
+    d = data.loc[r].values
     print(f"\n================= [row{r}] ======================")
     first = True
     json_ =""
     if first:
+
+# if block type is different from the previous one, it switches the json file
         print(f"[...] CURRENT  {title[0]} >> {str(d[0])}")
         json_ = t.SelectJson.select(str(d[0]))
         current_block_type = str(d[0])
@@ -71,10 +57,13 @@ for r in range(int(rows__)):
         default_data = json.loads(file.read())
     print(f"[...] USING {json_}\n")
     for col in range(len(title)):
+
+#? for each column in the row, it checks if the title is in the json file and if it is, it appends the value to the list
         try:
-            # print(title[col])
             if title[col] in default_data:
                 print(f"[+] {title[col]} | {str(d[col])}")
+
+# it checks if the value is empty and if it is, it adds a semicolon if not it updates the value
                 if title[col] != "":
                     update_data = {title[col]: str(d[col])}
                     default_data.update(update_data)
@@ -84,44 +73,53 @@ for r in range(int(rows__)):
             else:
                 print(f"|__[!] {title[col]} not in {json_} (skipped)")
 
+# index error is the only error that should be able to happen
         except IndexError as e:
             if title[col] in default_data:
                 if default_data[title[col]] == "":
                     update_data = {title[col]: empty}
                     default_data.update(update_data)
                 else: pass
+
+#? checks it the block type is different from the previous one
     if current_block_type != previous_block_type:
         same = 0
         previous_block_type = current_block_type
     else: pass
+
+# writes data to the output file
     with open(output__,"a") as out_file:
         print(f"\n[?] WRITING UNDER BLOCK TYPE: {current_block_type} ")
         if  previous_block_type == current_block_type and same < 1:
             out_file.write(f"\n\n{str(list(default_data.keys()))}")
 
+#? checks which block type it is and according to it, it chooses which lower_title to use
             type_ = t.SelectJson.select_type(str(d[0]))
             lower_title = t.TitleFormat.low_title_AI if type_ == "AI" else t.TitleFormat.low_title_AO if type_ == "AO" else t.TitleFormat.low_title_DI if type_ == "DI" else t.TitleFormat.low_title_DO if type_ == "DO" else None
 
+#? if its an unsupported type, it writes an error message
             out_file.write(f"\n{lower_title if lower_title != None else '[!] ERROR UNSUPPORTED TYPE'}\n")
             data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
             out_file.write(f"\n{data_row}")
-
             same += 1
+
+#? if its the same block type, it just writes the data in a new row
         elif previous_block_type == current_block_type:
             data_row = ';'.join([f'"{str(value)}"' if value != ';' else '""' for value in default_data.values()])
             out_file.write(f"\n{data_row}")
             same += 1
         else:
-            # Write a blank line after the data row
+#? Writes a blank line after the data row
             out_file.write("\n")
 
     print(f"[?] SUCCESSFULLY WRITTEN ROW {r} TO {output__}")
 
+#? writes the end block to specify the end of the file
 with open(output__,"a") as out_file:
     out_file.write(f"\n\n{t.TitleFormat.end_block}")
 
-print(f"\n+++++++++++++++++++++++++++++++++++++++++++++++")
-print(f"+++++++++++++++++ DONE ++++++++++++++++++++++++")
+print(f"\n+++++++++++++++++++++++++++++++++++++++++++++++\n+++++++++++++++++ DONE ++++++++++++++++++++++++")
+
 
 
 # reset config.json

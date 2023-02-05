@@ -11,21 +11,27 @@ update = False
 root = tk.Tk()
 
 def open_file_input():
+    # opens a file dialog to select a file for input
     filetypes = (("excel files", "*.xlsx"), ("all files", "*.*"))
     filename = tk.filedialog.askopenfile(title="Select a File", initialdir=os.getcwd(), filetypes=filetypes)
     path = filename.name
     files.append(path)
+
 def open_file_out():
+    # opens a file dialog to select a file for output
     filetypes = (("textfile files", "*.csv"), ("all files", "*.*"))
     filename = tk.filedialog.askopenfile(title="Select a File", initialdir=os.getcwd(), filetypes=filetypes)
     path = filename.name
     files.append(path)
+
 row_var=tk.IntVar()
+# I am as confused as you are
 def sub():
     row=row_var.get()
     files.append(row)
     close_window()
 
+# used as part of the "be able to make pull requests from the ui" update .... it sees if the user wants to update
 def SetTrue():
     global update
     update = True
@@ -38,6 +44,10 @@ def close_window():
             files.remove(files[2])
             raise ValueError("Rows cannot be 0")
         else:root.destroy()
+
+def open_git():
+        import webbrowser
+        webbrowser.open_new(r"https://github.com/us3-r/UPR")
 
 def select_file():
     root.title("xlsx to csv for iFix")
@@ -55,14 +65,18 @@ def select_file():
     label = tk.Label(root, text="https://github.com/us3-r/UPR")
     label.config(font=("Courier", 12))
     label.pack()
+    label.bind("<Button-1>", lambda e:open())
 
     # main window
-    ws = root.winfo_screenwidth() # width of the screen
-    hs = root.winfo_screenheight() # height of the screen
+
+    #? this is used to open the window in the center of users screen
+    ws = root.winfo_screenwidth() # width of the users screen
+    hs = root.winfo_screenheight() # height of the users screen
     x = (ws/2) - (250/2)
     y = (hs/2) - (50/2) - 100
     root.geometry('%dx%d+%d+%d' % (450 , 250, x, y))
 
+    # buttons and fields
     button_input = tk.Button(root, text="Select input file", command=open_file_input)
     button_input.place(relx=0.5, rely=0.20, anchor="center")
     button_output = tk.Button(root, text="select output file", command=open_file_out)
@@ -76,6 +90,7 @@ def select_file():
     root.mainloop()
 
 def ui_main():
+    # opens the ui and adds selected values to config.json
     select_file()
     print(files)
     try:
@@ -89,7 +104,6 @@ def ui_main():
             f.write(js_obj)
     except Exception as e:
         print(e)
-    print(update)
 
 if __name__ == "__main__":
     ui_main()
