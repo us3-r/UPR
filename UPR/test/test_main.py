@@ -17,8 +17,8 @@ final = []
 
 
 
-input__ = "C:\\Users\\gfhyt\\Documents\\code\\PYTHON\\sola\\UPR\\UPR\\example\\big.xlsx"
-output__ = "C:\\Users\\gfhyt\\Documents\\code\PYTHON\\sola\\UPR\\UPR\\new.csv"
+input__ = "..\\UPR\\example\\big.xlsx"
+output__ = "..\\UPR\\new.csv"
 
 
 
