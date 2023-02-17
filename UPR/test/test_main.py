@@ -42,13 +42,7 @@ for test in range(0,5100,100):
         d = data.loc[r].values
         print(f"\n================= [row{r}] ======================")
         json_ ="AI.json"
-    #     if first:
-    # # if block type is different from the previous one, it switches the json file
-    #         print(f"[...] CURRENT  {title[0]} >> {str(d[0])}")
-    #         json_ = "AI.json"
-    #         current_block_type = str(d[0])
-    #         first = False
-    #     else:False
+
         with open(f"{json_}","r") as file:
             default_data = json.loads(file.read())
         print(f"[...] USING {json_}\n")
