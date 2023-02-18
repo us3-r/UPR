@@ -73,7 +73,7 @@ for r in range(int(rows__)):
             else:
                 print(f"|__[!] {title[col]} not in {json_} (skipped)")
 
-# index error is the only error that should be able to happen
+# index error is the only error that should be able to happen, check the inputted row count
         except IndexError as e:
             if title[col] in default_data:
                 if default_data[title[col]] == "":
