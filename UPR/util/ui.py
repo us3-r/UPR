@@ -37,6 +37,18 @@ def SetTrue():
     update = True
     root.quit()
 
+def popInfo():
+    second_window = tk.Toplevel(root)
+    second_window.title("Info")
+    label = tk.Label(second_window, text="[!!] Function not yet available [!!]")
+    label.config(font=("Courier", 12))
+    label.pack()
+    ws = second_window.winfo_screenwidth() # width of the users screen
+    hs = second_window.winfo_screenheight() # height of the users screen
+    x = (ws/2) - (250/2)
+    y = (hs/2) - (50/2) - 100
+    second_window.geometry('%dx%d+%d+%d' % (450 , 250, x, y))
+
 
 def close_window():
     if len(files) == 3:
@@ -51,13 +63,13 @@ def open_git():
 
 def select_file():
     root.title("xlsx to csv for iFix")
-    root.geometry("1098x720")
+    #root.geometry("1098x720") 
 
     # menu bar
     menubar = tk.Menu(root)
     _menu = tk.Menu(menubar, tearoff=0)
     menubar.add_cascade(label="Options", menu=_menu)
-    _menu.add_command(label="Update", command=SetTrue)
+    _menu.add_command(label="Update", command=popInfo)
     _menu.add_command(label="Exit", command=root.quit)
     root.config(menu=menubar)
 
