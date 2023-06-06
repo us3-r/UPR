@@ -14,7 +14,7 @@ you  have 2 buttons (on which it says what they are for) and a field with a numb
 <br></ make shore that in your .xlsx document the TYPES are in order (eg: AI,AI,DI,DO... and not AI,DI,AI,DO,AO,DO...)
 <br><br>! only inconvenience (at the moment) is that if you mess up the file selection you need to restart the program ! 
 
-#### NOTE:  Go to braenche "test" to see the aproximet time it takes to rewrite the table
+#### NOTE:  Go to branch "test" to see the aproximet time it takes to rewrite the table
 
 
 ###### made for a school project, falls under the MIT licence
